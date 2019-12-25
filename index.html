@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/spinner.css">
-    <link rel="stylesheet" href="css/styles.css">
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/tesseract-v2.0.1.min.js"></script>
-    <script src="js/script-v2.js"></script>
+    <script>
+        const uncachedValue = new Date().toISOString();
+        document.write("<link rel='stylesheet' href='css/styles.css?v="+uncachedValue+"'>");
+        document.write("<script src='js/script-v2.js?v="+uncachedValue+"'><\/script>");
+    </script>
 </head>
 <body ondragover="return false">
     <div class="container">
