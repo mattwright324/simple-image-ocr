@@ -6,6 +6,9 @@
 (function () {
     'use strict';
 
+    let baseUrl = window.location.href;
+    baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
+
     // Increment for each image
     let uniqueId = 0;
 
@@ -50,7 +53,9 @@
     async function translateImgSrc(src, resultElement, outputElement) {
         console.log("translating image");
 
-        const worker = new Tesseract.createWorker();
+        const worker = new Tesseract.createWorker({
+            langPath: baseUrl + "/data/"
+        });
         await worker.load();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
@@ -147,8 +152,6 @@
 
         // URL(s) list listener & sample links
         const samples = ["sample-dark-text-screenshot.png", "sample-scanned-book-page.png", "sample-screenshot.png"];
-        let baseUrl = window.location.href;
-        baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
         for (let i = 0; i < samples.length; i++) {
             samples[i] = baseUrl + "/img/" + samples[i];
         }
