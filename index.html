@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Local OCR</title>
+
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/spinner.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/tesseract-v2.0.1.min.js"></script>
+    <script src="js/script-v2.js"></script>
+</head>
+<body ondragover="return false">
+    <div class="container">
+        <div class="column mt-5">
+            <h3>About</h3>
+            <p>
+                This tool allows you to OCR images in several different ways right in your browser.
+                It is designed to be portable, copy the folder and use locally or clone and host it elsewhere.
+            </p>
+            <p>
+                Using the <a href="https://tesseract.projectnaptha.com/">Tesseract.js</a> engine.
+                Resulting OCR text may not be perfect so always review and check for errors --
+                results are editable and spellcheck is enabled.
+                While it needs the internet to retrieve training data & worker js,
+                it <strong>does not send submitted images anywhere</strong>. All OCR work is done in the browser.
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="column one-third">
+                <h4>Inputs</h4>
+                <ul>
+                    <li>Paste your image directly from the clipboard into the page (CTRL + V)</li>
+                    <li>
+                        Drag your image from the desktop or file explorer directly into the page
+                    </li>
+                    <li>
+                        Browse your system for image(s)
+                        <br>
+                        <label for="file-chooser" class="button button-primary" style="margin-top: 10px;">Browse</label>
+                        <input id="file-chooser" type="file" style="display:none;" multiple>
+                    </li>
+                    <li>
+                        Paste URL(s) and submit. Note: may not work with certain URLs due to CORS.
+                        <br>
+                        <textarea id="url-list" style="height:initial;width:100%;margin-top: 10px;white-space: nowrap;  overflow: auto;" rows="5" placeholder="https://domain/path/image.png" wrap="soft"></textarea>
+                        <button id="url-submit" type="button" class="button-primary">Submit</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="column two-thirds">
+                <h4>Results</h4>
+                <div id="results" class="column no-margin"></div>
+                <div id="placeholder" class="column no-margin">
+                    You haven't provided any image(s) yet.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

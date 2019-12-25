@@ -1,0 +1,76 @@
+body {
+    background-color: rgb(20, 20, 20);
+    background-image: url(../img/noise.png);
+    color: white;
+}
+
+textarea {
+    color: black;
+}
+
+.mt-5 {
+    margin-top: 5%;
+}
+
+.mb-5 {
+    margin-bottom: 5%;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+#placeholder {
+    border: 1px dotted lightgray;
+    border-radius: 10px;
+    color: lightgray;
+    text-align: center;
+    padding: 5%;
+    font-weight: 100;
+    user-select: none;
+}
+
+.result .info {
+    font-size: small;
+    border: none;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.2)
+}
+
+.result .output {
+    height: initial;
+    width: 100%;
+}
+
+.img-holder {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dotted lightgray;
+}
+
+.img-holder img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.result.loading > :not(.spinner) {
+    opacity: 0.5;
+}
+.result.loading .spinner {
+    visibility: visible;
+}
+.result:not(.loading) .spinner {
+    visibility: hidden;
+}
+.spinner {
+    position: absolute;
+    top: 35%;
+    left: 45%;
+    opacity: 1;
+}
+
+button[disabled], label[disabled] {
+    color: lightgray;
+}
