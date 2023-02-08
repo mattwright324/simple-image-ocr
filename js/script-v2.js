@@ -50,8 +50,7 @@
     async function translateImgSrc(src, resultElement, outputElement) {
         console.log("translating image");
 
-        const worker = new Tesseract.createWorker();
-        await worker.load();
+        const worker = await Tesseract.createWorker();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
         const {data} = await worker.recognize(src);
