@@ -16,27 +16,29 @@
     function buildAndAddResultHtml(type, typeInfo) {
         const id = uniqueId++;
 
-        const typeInfoHtml = typeInfo ?
-            "<input type='text' value='" + typeInfo + "' onclick='this.focus();' readonly='readonly' class='u-full-width info'>"
-            : "";
-
-        const html =
-            "<div id='result-" + id + "' class='column no-margin result loading' style='position:relative'>" +
-                "<h6 class='no-margin'>" + type + "</h6>" +
-                typeInfoHtml +
-                "<div class='row' style='margin-top:10px'>" +
-                    "<div class='columns two' style='text-align: center'>" +
-                        "<div class='img-holder'>" +
-                            "<img class='input'>" +
-                        "</div>" +
-                        "<small class='image-size' style='color:lightgray'>...x...</small>" +
-                    "</div>" +
-                    "<div class='columns ten mb-5'>" +
-                        "<textarea class='output' rows='5' onclick='this.focus();' spellcheck='true'>Results here</textarea>" +
-                    "</div>" +
-                "</div>" +
-                "<div class='spinner'><div class='lds-ellipsis'><div></div><div></div><div></div><div></div></div></div>" +
-            "</div>";
+        const html = `
+                <div class="result loading mb-3" id="result-${id}">
+                    <strong>${type}</strong>
+                    <input autocomplete="off" type="text" class="form-control" value="${typeInfo}" readonly>
+                    <br>
+                    <div class="row">
+                        <div class="col-auto text-sm-center">
+                            <div class='img-holder'>
+                                <img class="input">
+                            </div>
+                            <small class="image-size text-muted"></small>
+                        </div>
+                        <div class="col">
+                            <textarea autocomplete="off" class='form-control output' rows="8" spellcheck="true" style="width:100%"></textarea>
+                        </div>
+                    </div>
+                    <div class="spinner">
+                        <div class="spinner-grow text-primary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+        `
 
         $("#results").prepend(html);
         $("#placeholder").hide();
@@ -72,7 +74,7 @@
         const reader = new FileReader();
         reader.onload = function (e) {
             input.attr("src", e.target.result);
-            input.on("load",function () {
+            input.on("load", function () {
                 const temp = new Image();
                 temp.onload = function () {
                     inputSize.text(temp.width + "x" + temp.height);
@@ -108,6 +110,14 @@
     $(document).ready(function () {
 
         // Drag & Drop listener
+        document.body.addEventListener('dragenter', async function () {
+            $('.selector').css({'border' : '3px dashed cornflowerblue'});
+        })
+        document.body.addEventListener('dragleave', async function (e) {
+            if (e.target === document.body) {
+                $('.selector').css({'border' : ''});
+            }
+        })
         document.body.addEventListener('drop', async function (e) {
             e.stopPropagation();
             e.preventDefault();
@@ -117,6 +127,8 @@
             console.log(file);
 
             loadAsFile(file, "Drag/Drop", file.name);
+
+            $('.selector').css({'border' : ''});
         });
 
         // Clipboard paste listener
@@ -144,14 +156,6 @@
             }
         });
 
-        // URL(s) list listener & sample links
-        const samples = ["sample-dark-text-screenshot.png", "sample-scanned-book-page.png", "sample-screenshot.png"];
-        let baseUrl = window.location.href;
-        baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
-        for (let i = 0; i < samples.length; i++) {
-            samples[i] = baseUrl + "/img/" + samples[i];
-        }
-        $("#url-list").val(samples.join("\r\n"));
         $("#url-submit").on('click', function () {
             const text = $("#url-list").val();
 

@@ -1,60 +1,44 @@
-body {
-    background-color: rgb(20, 20, 20);
-    background-image: url(../img/noise.png);
-    color: white;
+.navbar {
+    font-size: 1.5rem !important;
 }
 
-textarea {
-    color: black;
+.navbar-brand {
+    font-size: 1.75rem !important;
 }
 
-.mt-5 {
-    margin-top: 5%;
+.navbar-brand img {
+    width: 40px !important;
+    height: 40px !important;
 }
 
-.mb-5 {
-    margin-bottom: 5%;
+a {
+    text-decoration: none;
 }
 
-.no-margin {
-    margin: 0;
+#input-methods {
+    line-height: 1.75em;
 }
 
-#placeholder {
-    border: 1px dotted lightgray;
-    border-radius: 10px;
-    color: lightgray;
-    text-align: center;
-    padding: 5%;
-    font-weight: 100;
-    user-select: none;
+#input-methods li {
+    margin-bottom: 1.25em;
 }
 
-.result .info {
-    font-size: small;
-    border: none;
-    margin: 0;
-    background-color: rgba(255, 255, 255, 0.2)
+.result {
+    position: relative;
+    padding: 15px;
 }
-
-.result .output {
-    height: initial;
+.spinner {
     width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-content: center;
+    text-align: center;
+    background-color: rgba(127,127,127,0.25);
+    border-radius: 15px;
+    border: 3px dashed gray;
 }
-
-.img-holder {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px dotted lightgray;
-}
-
-.img-holder img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
 .result.loading > :not(.spinner) {
     opacity: 0.5;
 }
@@ -64,13 +48,31 @@ textarea {
 .result:not(.loading) .spinner {
     visibility: hidden;
 }
-.spinner {
-    position: absolute;
-    top: 35%;
-    left: 45%;
-    opacity: 1;
+
+.selector {
+    padding: 35px;
+    font-size: 1.25em!important;
+    align-content: center;
+    text-align: center;
+    background-color: rgba(127,127,127,0.05);
+    border-radius: 15px;
+    border: 1px dashed gray;
 }
 
-button[disabled], label[disabled] {
-    color: lightgray;
+#placeholder {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+.img-holder {
+    height: 206px;
+    width: 206px;
+    display: flex;
+    align-items: center;
+    border: 1px dotted lightgray;
+}
+.img-holder img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
 }
